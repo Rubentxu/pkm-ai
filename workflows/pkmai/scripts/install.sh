@@ -76,7 +76,7 @@ create_claude_code_symlinks() {
                 echo "  Created: $target -> $source"
             fi
             ln -s "$source" "$target"
-            ((symlinks_created++))
+            symlinks_created=$((symlinks_created + 1))
         fi
     done
 
@@ -97,7 +97,7 @@ create_claude_code_symlinks() {
                 echo "  Created: $target -> $source"
             fi
             ln -s "$source" "$target"
-            ((symlinks_created++))
+            symlinks_created=$((symlinks_created + 1))
         fi
     done
 
@@ -122,7 +122,7 @@ create_claude_code_symlinks() {
                 echo "  Created: $target -> $source"
             fi
             ln -s "$source" "$target"
-            ((symlinks_created++))
+            symlinks_created=$((symlinks_created + 1))
         fi
     done
 
