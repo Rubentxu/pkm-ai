@@ -26,8 +26,8 @@ Explore a topic thoroughly to understand the problem space before proposing solu
 
 ### Step 1: Load Skills
 
-Load `workflows/pkmai/sdd/_shared/phase-common.md` for return format.
-Load `workflows/pkmai/sdd/_shared/pkmai-convention.md` for PKM-AI conventions.
+Load `${PKM_AI_SHARED:-~/.pkm-ai/sdd/_shared}/phase-common.md` for return format.
+Load `${PKM_AI_SHARED:-~/.pkm-ai/sdd/_shared}/pkmai-convention.md` for PKM-AI conventions.
 
 ### Step 2: Research Topic
 

@@ -36,7 +36,7 @@ Create a detailed specification with concrete scenarios that define:
 
 ### Step 1: Load Shared Conventions
 
-Load `workflows/pkmai/sdd/_shared/phase-common.md` for the return envelope format.
+Load `${PKM_AI_SHARED:-~/.pkm-ai/sdd/_shared}/phase-common.md` for the return envelope format.
 
 ### Step 2: Retrieve Proposal
 

@@ -84,7 +84,7 @@ Register a new skill in PKM-AI:
 ```python
 # Step 1: Validate skill exists
 import os
-skill_md_path = f"workflows/pkmai/skills/{skill_path}/SKILL.md"
+skill_md_path = f"${PKM_AI_SKILLS:-~/.pkm-ai/skills}/{skill_path}/SKILL.md"
 
 if not os.path.exists(skill_md_path):
     raise Exception(f"Skill not found: {skill_path}")
@@ -130,9 +130,10 @@ results = search_blocks(
 # Step 2: Also check filesystem for skill directories
 import os
 skill_dirs = []
-for root, dirs, files in os.walk("workflows/pkmai/skills"):
+skills_base = os.path.expanduser(f"${PKM_AI_SKILLS:-~/.pkm-ai/skills}")
+for root, dirs, files in os.walk(skills_base):
     if "SKILL.md" in files:
-        skill_dirs.append(root.replace("workflows/pkmai/skills/", ""))
+        skill_dirs.append(root.replace(skills_base + "/", ""))
 
 # Step 3: Match query to skills
 # Look for trigger phrases or name matches
@@ -146,10 +147,11 @@ Sync the PKM-AI registry with actual skill files on disk:
 # Step 1: Scan for all SKILL.md files
 import os
 skills = []
+skills_base = os.path.expanduser(f"${PKM_AI_SKILLS:-~/.pkm-ai/skills}")
 
-for root, dirs, files in os.walk("."):
-    if "SKILL.md" in files and ".claude/skills" in root or "workflows/pkmai/skills" in root:
-        skill_path = root.replace("./", "").replace("workflows/pkmai/skills/", "skills/")
+for root, dirs, files in os.walk(skills_base):
+    if "SKILL.md" in files:
+        skill_path = root.replace(skills_base + "/", "")
         skills.append(scan_skill(skill_path))
 
 # Step 2: Update or create registry block
@@ -165,7 +167,7 @@ def scan_skill(skill_path):
     import re
     import os
 
-    skill_md_path = f"workflows/pkmai/skills/{skill_path}/SKILL.md"
+    skill_md_path = f"${PKM_AI_SKILLS:-~/.pkm-ai/skills}/{skill_path}/SKILL.md"
 
     if not os.path.exists(skill_md_path):
         return None
@@ -237,10 +239,10 @@ Central registry of all PKM-AI skills.
 
 ## Directory Structure
 
-### .claude/skills/
-User-defined skills in CLAUDE.md project configuration.
+### ~/.pkm-ai/skills/
+User-defined skills in PKM-AI skills directory.
 
-### workflows/pkmai/skills/
+### ${PKM_AI_SKILLS:-~/.pkm-ai/skills}/
 PKM-AI native skills for SDD workflow.
 
 ## Notes
@@ -277,8 +279,8 @@ The skill-registry scans these locations for skills:
 
 | Directory | Priority | Description |
 |-----------|----------|-------------|
-| `.claude/skills/` | High | User-defined project skills |
-| `workflows/pkmai/skills/` | High | PKM-AI native skills |
+| `~/.pkm-ai/skills/` | High | User-defined project skills |
+| `${PKM_AI_SKILLS:-~/.pkm-ai/skills}/` | High | PKM-AI native skills |
 | `skills/` | Medium | Legacy skill directory |
 
 ## Rules

@@ -38,8 +38,8 @@ Verify that the implementation satisfies all acceptance criteria defined in the 
 
 ### Step 1: Load Shared Conventions
 
-Load `workflows/pkmai/skills/_shared/sdd-phase-common.md` for the return envelope format.
-Load `workflows/pkmai/skills/_shared/pkmai-convention.md` for PKM-AI conventions.
+Load `${PKM_AI_SHARED:-~/.pkm-ai/sdd/_shared}/sdd-phase-common.md` for the return envelope format.
+Load `${PKM_AI_SHARED:-~/.pkm-ai/sdd/_shared}/pkmai-convention.md` for PKM-AI conventions.
 
 ### Step 2: Retrieve Required Artifacts
 
