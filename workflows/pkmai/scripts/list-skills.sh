@@ -2,6 +2,8 @@
 # PKM-AI List Skills Script
 # Lists all available PKM-AI skills
 
+shopt -s extglob
+
 PKM_AI_DIR="${PKM_AI_DIR:-$HOME/.pkm-ai}"
 
 # Resolve ~ to absolute path
