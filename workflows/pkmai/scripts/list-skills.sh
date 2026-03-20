@@ -5,10 +5,13 @@
 shopt -s extglob
 
 PKM_AI_DIR="${PKM_AI_DIR:-$HOME/.pkm-ai}"
+PKM_AI_SKILLS="${PKM_AI_SKILLS:-$PKM_AI_DIR/skills}"
 
 # Resolve ~ to absolute path
 PKM_AI_DIR="${PKM_AI_DIR/#\~/$HOME}"
 PKM_AI_DIR="$(realpath "$PKM_AI_DIR" 2>/dev/null || echo "$PKM_AI_DIR")"
+PKM_AI_SKILLS="${PKM_AI_SKILLS/#\~/$HOME}"
+PKM_AI_SKILLS="$(realpath "$PKM_AI_SKILLS" 2>/dev/null || echo "$PKM_AI_SKILLS")"
 
 if [ ! -d "$PKM_AI_DIR" ]; then
     echo "PKM-AI not installed at $PKM_AI_DIR"
@@ -30,7 +33,7 @@ echo ""
 echo "=== SDD Phase Skills (9) ==="
 echo ""
 
-for skill in "$PKM_AI_DIR/skills"/sdd-*; do
+for skill in "$PKM_AI_SKILLS"/sdd-*; do
     if [ -d "$skill" ] && [ -f "$skill/SKILL.md" ]; then
         name=$(basename "$skill")
         # Extract description from SKILL.md
@@ -46,7 +49,7 @@ echo ""
 echo "=== Utility Skills (3) ==="
 echo ""
 
-for skill in "$PKM_AI_DIR/skills"/!(sdd-*); do
+for skill in "$PKM_AI_SKILLS"/!(sdd-*); do
     if [ -d "$skill" ] && [ -f "$skill/SKILL.md" ]; then
         name=$(basename "$skill")
         desc=$(grep -A2 "^description:" "$skill/SKILL.md" 2>/dev/null | tail -1 | sed 's/.*:.*>//' | tr -d '<' | cut -c1-60)
@@ -61,6 +64,6 @@ echo ""
 echo "=========================================="
 echo ""
 echo "For details on a skill, read:"
-echo "  $PKM_AI_DIR/skills/{skill-name}/SKILL.md"
+echo "  $PKM_AI_SKILLS/{skill-name}/SKILL.md"
 echo ""
-echo "Documentation: $PKM_AI_DIR/docs/"
+echo "Documentation: $PKM_AI_DIR/workflows/pkmai/docs/"
