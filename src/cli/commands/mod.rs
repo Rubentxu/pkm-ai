@@ -1,0 +1,23 @@
+//! CLI commands
+
+pub mod create;
+pub mod quick;
+pub mod list;
+pub mod promote;
+pub mod show;
+pub mod link;
+pub mod traverse;
+pub mod gravity_check;
+pub mod toc;
+pub mod synthesize;
+pub mod ghost;
+pub mod architect;
+pub mod lint;
+pub mod db_cmd;
+pub mod version;
+pub mod sync;
+pub mod grep;
+pub mod search;
+pub mod mcp;
+pub mod session;
+pub mod doctor;

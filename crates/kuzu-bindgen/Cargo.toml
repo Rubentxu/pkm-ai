@@ -1,0 +1,11 @@
+[package]
+name = "kuzu-bindgen"
+version = "0.1.0"
+edition = "2021"
+authors = ["pkm-ai Team"]
+description = "Pure Rust mock implementation of Kuzu bindings for testing"
+
+[dependencies]
+thiserror = "1.0"
+
+[build-dependencies]

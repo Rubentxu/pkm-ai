@@ -1,0 +1,106 @@
+[package]
+name = "pkm-ai"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.92"
+authors = ["pkm-ai Team"]
+description = "High-performance PKM with Zettelkasten + SurrealDB + AI integration"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/rubentxu/pkmai"
+keywords = ["pkm", "zettelkasten", "knowledge-graph", "surrealdb", "ai"]
+categories = ["command-line-interface", "database", "text-processing"]
+
+[lib]
+name = "pkm_ai"
+path = "src/lib.rs"
+
+[[bin]]
+name = "pkmai"
+path = "src/main.rs"
+
+[dependencies]
+# Database
+surrealdb = { version = "2.0", features = ["kv-mem", "kv-rocksdb"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# CLI
+clap = { version = "4.5", features = ["derive", "color", "suggestions", "wrap_help", "env"] }
+clap_complete = "4.5"
+
+# ULID for sortable IDs
+ulid = "1.1"
+
+# Date/Time
+chrono = { version = "0.4", features = ["serde"] }
+
+# System directories
+dirs = "5"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Async runtime
+tokio = { version = "1.37", features = ["full"] }
+
+# TUI
+ratatui = "0.26"
+crossterm = { version = "0.27", features = ["event-stream"] }
+atty = "0.2"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Text processing
+regex = "1.10"
+markdown = "1.0"
+
+# Random number generation (for clustering algorithms)
+rand = "0.8"
+
+# AI Integration (MCP Protocol)
+async-trait = "0.1"
+rmcp = { version = "1.2", features = ["server", "transport-io"] }
+
+# Vector operations for semantic similarity
+ndarray = "0.15"
+
+# Kuzu bindgen (when kuzu feature enabled)
+kuzu-bindgen = { path = "crates/kuzu-bindgen", optional = true }
+
+# Typst for document synthesis
+# typst = "0.11"  # Uncomment when typst crate is stable
+
+[dev-dependencies]
+tempfile = "3.10"
+assert_cmd = "2.0"
+predicates = "3.1"
+criterion = { version = "0.5", features = ["html_reports"] }
+
+# [[bench]]
+# name = "block_operations"
+# harness = false
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
+opt-level = 3
+
+[profile.dev]
+opt-level = 0
+debug = true
+
+[features]
+default = ["rocksdb"]
+rocksdb = ["surrealdb/kv-rocksdb"]
+memory = ["surrealdb/kv-mem"]
+ai-integration = []
+typst = []
+kuzu = ["kuzu-bindgen"]
