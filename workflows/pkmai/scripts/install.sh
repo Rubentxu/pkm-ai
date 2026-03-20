@@ -22,10 +22,10 @@ OPTIONS:
 
 EXAMPLES:
     # Default install to ~/.pkm-ai
-    curl -fsSL https://raw.githubusercontent.com/Rubentxu/pkm-ai/trunk/workflows/pkmai/main/scripts/install.sh | bash
+    curl -fsSL https://raw.githubusercontent.com/Rubentxu/pkm-ai/main/workflows/pkmai/scripts/install.sh | bash
 
     # Install to custom location
-    curl -fsSL https://raw.githubusercontent.com/Rubentxu/pkm-ai/trunk/workflows/pkmai/main/scripts/install.sh | bash -s -- -d /path/to/pkm-ai
+    curl -fsSL https://raw.githubusercontent.com/Rubentxu/pkm-ai/main/workflows/pkmai/scripts/install.sh | bash -s -- -d /path/to/pkm-ai
 
     # Update existing installation
     ~/.pkm-ai/scripts/update.sh
