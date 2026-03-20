@@ -22,10 +22,10 @@ OPTIONS:
 
 EXAMPLES:
     # Default install to ~/.pkm-ai
-    curl -fsSL https://raw.githubusercontent.com/pkm-ai/pkm-ai/main/scripts/install.sh | bash
+    curl -fsSL https://raw.githubusercontent.com/Rubentxu/pkm-ai/trunk/workflows/pkmai/main/scripts/install.sh | bash
 
     # Install to custom location
-    curl -fsSL https://raw.githubusercontent.com/pkm-ai/pkm-ai/main/scripts/install.sh | bash -s -- -d /path/to/pkm-ai
+    curl -fsSL https://raw.githubusercontent.com/Rubentxu/pkm-ai/trunk/workflows/pkmai/main/scripts/install.sh | bash -s -- -d /path/to/pkm-ai
 
     # Update existing installation
     ~/.pkm-ai/scripts/update.sh
@@ -69,7 +69,7 @@ else
 
     # Clone repository
     echo "Cloning pkm-ai repository..."
-    git clone -b "$BRANCH" --depth 1 https://github.com/pkm-ai/pkm-ai.git "$PKM_AI_DIR"
+    git clone -b "$BRANCH" --depth 1 https://github.com/Rubentxu/pkm-ai.git "$PKM_AI_DIR"
 
     # Initialize submodules
     git submodule update --init --recursive 2>/dev/null || true
@@ -81,8 +81,8 @@ cat > "$PKM_AI_DIR/.envrc" <<EOF
 # Source this file: source ~/.pkm-ai/.envrc
 
 export PKM_AI_DIR="$PKM_AI_DIR"
-export PKM_AI_SHARED="$PKM_AI_DIR/sdd/_shared"
-export PKM_AI_SKILLS="$PKM_AI_DIR/skills"
+export PKM_AI_SHARED="$PKM_AI_DIR/workflows/pkmai/sdd/_shared"
+export PKM_AI_SKILLS="$PKM_AI_DIR/workflows/pkmai/skills"
 
 # Add to PATH if needed
 # export PATH="\$PKM_AI_DIR/scripts:\$PATH"
