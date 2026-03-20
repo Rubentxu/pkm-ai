@@ -64,7 +64,7 @@ create_claude_code_symlinks() {
         if [ -d "$skill_dir" ] && [ -f "${skill_dir}SKILL.md" ]; then
             local skill_name=$(basename "$skill_dir")
             local target="$commands_dir/$skill_name"
-            local source="${skill_dir}SKILL.md"
+            local source="${skill_dir}"
 
             if [ -L "$target" ]; then
                 rm "$target"
@@ -85,7 +85,7 @@ create_claude_code_symlinks() {
         if [ -d "$skill_dir" ] && [ -f "${skill_dir}SKILL.md" ]; then
             local skill_name=$(basename "$skill_dir")
             local target="$commands_dir/$skill_name"
-            local source="${skill_dir}SKILL.md"
+            local source="${skill_dir}"
 
             if [ -L "$target" ]; then
                 rm "$target"
@@ -110,7 +110,7 @@ create_claude_code_symlinks() {
                 continue
             fi
             local target="$commands_dir/$skill_name"
-            local source="${skill_dir}SKILL.md"
+            local source="${skill_dir}"
 
             if [ -L "$target" ]; then
                 rm "$target"
