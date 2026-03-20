@@ -19,7 +19,7 @@ OPTIONS:
     -d DIR     Installation directory (default: ~/.pkm-ai)
     -b BRANCH  Git branch to install (default: main)
     -f         Force update if directory exists
-    -l         Create Claude Code command symlinks only (no install)
+    -l         Create Claude Code skill symlinks only (no install)
     -h         Show this help message
 
 EXAMPLES:
@@ -43,7 +43,7 @@ is_claude_code_installed() {
     command -v claude >/dev/null 2>&1 || [ -d "$HOME/.claude" ]
 }
 
-# Create Claude Code command symlinks
+# Create Claude Code skill symlinks
 create_claude_code_symlinks() {
     local skills_dir="$PKM_AI_DIR/workflows/pkmai/skills"
     local commands_dir="$HOME/.claude/skills"
@@ -127,7 +127,7 @@ create_claude_code_symlinks() {
     done
 
     echo ""
-    echo "Created $symlinks_created Claude Code command symlinks."
+    echo "Created $symlinks_created Claude Code skill symlinks."
     echo "Available commands in Claude Code: /sdd-*, /branch-pr, /issue-creation, /skill-registry"
 }
 
@@ -139,14 +139,14 @@ ask_create_symlinks() {
         echo "Claude Code detected!"
         echo "=========================================="
         echo ""
-        echo "Would you like to create command symlinks for Claude Code?"
+        echo "Would you like to create skill symlinks for Claude Code?"
         echo "This will make PKM-AI skills available as /commands in Claude Code."
         echo ""
         echo "Symlinks will be created in: $HOME/.claude/skills/"
         echo ""
 
         while true; do
-            read -p "Create Claude Code command symlinks? [Y/n] " -n 1 -r yn
+            read -p "Create Claude Code skill symlinks? [Y/n] " -n 1 -r yn
             echo
             case $yn in
                 [Yy]|"" )
@@ -166,7 +166,7 @@ ask_create_symlinks() {
     else
         echo ""
         echo "Claude Code not detected. Skipping symlink creation."
-        echo "If you install Claude Code later, run '~/.pkm-ai/scripts/install.sh -l' to create command symlinks."
+        echo "If you install Claude Code later, run '~/.pkm-ai/scripts/install.sh -l' to create skill symlinks."
     fi
 }
 
