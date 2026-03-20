@@ -46,10 +46,10 @@ is_claude_code_installed() {
 # Create Claude Code command symlinks
 create_claude_code_symlinks() {
     local skills_dir="$PKM_AI_DIR/workflows/pkmai/skills"
-    local commands_dir="$HOME/.claude/commands"
+    local commands_dir="$HOME/.claude/skills"
 
     echo ""
-    echo "Creating Claude Code command symlinks..."
+    echo "Creating Claude Code skill symlinks..."
 
     # Check if Claude Code commands directory exists
     if [ ! -d "$commands_dir" ]; then
@@ -142,7 +142,7 @@ ask_create_symlinks() {
         echo "Would you like to create command symlinks for Claude Code?"
         echo "This will make PKM-AI skills available as /commands in Claude Code."
         echo ""
-        echo "Symlinks will be created in: $HOME/.claude/commands/"
+        echo "Symlinks will be created in: $HOME/.claude/skills/"
         echo ""
 
         while true; do
